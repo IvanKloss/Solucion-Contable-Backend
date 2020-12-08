@@ -8,8 +8,8 @@ async function bootstrap() {
   const options = new DocumentBuilder()
   .setTitle('Demo Swagger Sistema Contable Saicoma Ingresos')
   .build();
-const document = SwaggerModule.createDocument(app, options);
-SwaggerModule.setup('api', app, document);
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);
   
   await app.listen(3000);
 }

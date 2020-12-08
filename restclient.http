@@ -1,0 +1,24 @@
+#Obtener todos los ingresos
+GET http://localhost:3000/ingresos
+###
+
+#Obtener un ingreso
+GET http://localhost:3000/ingresos/be187241-2e80-4aa5-9aa8-f0ba59a7d969
+###
+
+#Crear un ingreso
+POST http://localhost:3000/ingresos HTTP/1.1
+content-type: application/json
+
+{
+    "monto": "5000",
+    "descripcion": "test descripcion",
+    "documento": "test documento",
+    "fuente": "test fuente",
+    "imagen": "test imagen" 
+}
+###
+
+#Borrar un ingreso
+DELETE http://localhost:3000/ingresos/be187241-2e80-4aa5-9aa8-f0ba59a7d969
+###

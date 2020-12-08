@@ -5,7 +5,7 @@ export interface Ingreso{
     documento: string;
     fuente: string;
     imagen: string;
-    // id: string;
+    id: string;
     // CreatedAt: string;
     // UpdatedAt: string;
 }

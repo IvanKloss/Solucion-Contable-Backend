@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Ingreso } from './ingreso.model';
-
+import {CrearIngresoDto} from './dto/crear-ingreso-dto'
 import { IngresosService } from './ingresos.service';
 
 @Controller('ingresos')
@@ -12,16 +12,18 @@ export class IngresosController {
     return this.ingresosService.getIngresos();
   }
 
+  @Get('/:id')
+  GetIngresoByID(@Param('id')id:string ):Ingreso{
+    return this.ingresosService.getIngresoByID(id);
+  } 
+
   @Post()
-  postIngreso(
-    @Body('monto') monto: number,
-    @Body('descripcion') descripcion: string,
-    @Body('documento') documento: string,
-    @Body('fuente') fuente: string,
-    @Body('imagen') imagen: string,
-  ): Ingreso {
-    //console.log('body ', body)
-    return this.ingresosService.postIngreso(monto, descripcion, documento, fuente, imagen);
+  postIngreso(@Body() crearIngresoDto:CrearIngresoDto):Ingreso {
+    return this.ingresosService.postIngreso(crearIngresoDto);
   }
 
+  @Delete('/:id')
+  deleteIngreso(@Param('id')id:string):void {
+    this.ingresosService.deleteIngreso(id);
+  }
 }
