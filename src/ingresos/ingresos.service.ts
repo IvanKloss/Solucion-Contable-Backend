@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CrearIngresoDto } from './dto/crear-ingreso-dto';
 import { Ingreso } from './ingreso.model';
 import { v4 as uuid } from 'uuid';
@@ -14,8 +14,12 @@ export class IngresosService {
     }
     
     getIngresoByID(id: string):Ingreso{
-        console.log("get/id")
-        return this.ingresos.find(ingreso => ingreso.id === id)
+        console.log("get/id");
+        const result:Ingreso = this.ingresos.find(ingreso => ingreso.id === id)
+        if (!result){
+            throw new NotFoundException();
+        }
+        return result;
     }
 
     postIngreso(crearIngresoDto: CrearIngresoDto):Ingreso {
@@ -33,7 +37,8 @@ export class IngresosService {
     }
     
     deleteIngreso(id:string): void{
-        this.ingresos = this.ingresos.filter(ingreso => ingreso.id !== id)
+        const resultado = this.getIngresoByID(id)
+        this.ingresos = this.ingresos.filter(ingreso => ingreso.id !== resultado.id)
     }
 
     updateIngreso(actualizarIngresoDto: ActualizarIngresoDto): Ingreso{

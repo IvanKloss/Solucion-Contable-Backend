@@ -29,8 +29,8 @@ content-type: application/json
 
 {
     "id": "4a8b3ded-5aeb-43d7-962c-40756b4f21d2",
-    "monto": "70000",
-    "descripcion": "test descripcion",
+    "monto": "700000",
+    "descripcion": "test descripcion updateada",
     "documento": "test documento",
     "fuente": "test fuente",
     "imagen": "test imagen" 

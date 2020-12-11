@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Ingreso } from './ingreso.model';
 import {CrearIngresoDto} from './dto/crear-ingreso-dto'
 import { IngresosService } from './ingresos.service';
@@ -19,6 +19,7 @@ export class IngresosController {
   } 
 
   @Post()
+  @UsePipes(ValidationPipe)
   postIngreso(@Body() crearIngresoDto:CrearIngresoDto):Ingreso {
     return this.ingresosService.postIngreso(crearIngresoDto);
   }
@@ -29,6 +30,7 @@ export class IngresosController {
   }
 
   @Put()
+  @UsePipes(ValidationPipe)
   updateIngreso(@Body()actualizarIngresoDto: ActualizarIngresoDto):Ingreso{
     return this.ingresosService.updateIngreso(actualizarIngresoDto);
   }
