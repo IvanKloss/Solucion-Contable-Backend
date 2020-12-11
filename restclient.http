@@ -22,3 +22,16 @@ content-type: application/json
 #Borrar un ingreso
 DELETE http://localhost:3000/ingresos/be187241-2e80-4aa5-9aa8-f0ba59a7d969
 ###
+
+
+PUT http://localhost:3000/ingresos HTTP/1.1
+content-type: application/json
+
+{
+    "id": "4a8b3ded-5aeb-43d7-962c-40756b4f21d2",
+    "monto": "70000",
+    "descripcion": "test descripcion",
+    "documento": "test documento",
+    "fuente": "test fuente",
+    "imagen": "test imagen" 
+}

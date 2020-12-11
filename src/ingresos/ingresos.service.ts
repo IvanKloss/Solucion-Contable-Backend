@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CrearIngresoDto } from './dto/crear-ingreso-dto';
 import { Ingreso } from './ingreso.model';
 import { v4 as uuid } from 'uuid';
+import { ActualizarIngresoDto } from './dto/actualizar-ingreso-dto';
 
 @Injectable()
 export class IngresosService {
@@ -31,7 +32,22 @@ export class IngresosService {
         return ingreso;
     }
     
-    deleteIngreso(id:string){
+    deleteIngreso(id:string): void{
         this.ingresos = this.ingresos.filter(ingreso => ingreso.id !== id)
+    }
+
+    updateIngreso(actualizarIngresoDto: ActualizarIngresoDto): Ingreso{
+        console.log("put");
+        const {id, monto, descripcion, documento, fuente, imagen} = actualizarIngresoDto;
+        this.deleteIngreso(id);
+        const ingresoActualizado: Ingreso = { 
+            id,
+            monto,
+            descripcion, 
+            documento, 
+            fuente, 
+            imagen}
+        this.ingresos.push(ingresoActualizado)
+        return ingresoActualizado;
     }
 }

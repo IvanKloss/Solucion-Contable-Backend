@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Ingreso } from './ingreso.model';
 import {CrearIngresoDto} from './dto/crear-ingreso-dto'
 import { IngresosService } from './ingresos.service';
+import { ActualizarIngresoDto } from './dto/actualizar-ingreso-dto';
 
 @Controller('ingresos')
 export class IngresosController {
@@ -25,5 +26,10 @@ export class IngresosController {
   @Delete('/:id')
   deleteIngreso(@Param('id')id:string):void {
     this.ingresosService.deleteIngreso(id);
+  }
+
+  @Put()
+  updateIngreso(@Body()actualizarIngresoDto: ActualizarIngresoDto):Ingreso{
+    return this.ingresosService.updateIngreso(actualizarIngresoDto);
   }
 }
